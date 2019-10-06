@@ -1,2 +1,2 @@
-# Analiza-podatkov-PROG1-
-Projektna naloga za programiranje 1
+# Analiza-podatkov-PROG1
+Projektna naloga pri predmetu Programiranje 1
