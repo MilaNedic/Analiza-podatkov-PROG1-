@@ -9,4 +9,23 @@ Analizirala bom prvih 250 animejev(ki so že bili predvajani/so zaključeni)/man
 
 ------------------------------------------------------------------------------
 
+Za vsak anime bom zajela:
+* naslov
+* začetek in konec predvajanja
+* žanr
+* oceno in število glasov
+* število epizod
+* oceno vsebine (content/maturity rating)
+
+Za vsako mango bom zajela:
+* naslov
+* datum izdaje
+* žanr
+* oceno in število glasov
+* število mang v seriji
+
 Delovne hipoteze:
+* Ali obstaja povezava med žanrom in popularnostjo (oceno), tako pri mangi kot pri animejih?
+* Katera vsebina je najbolj gledana (G, PG, ...)?
+* Ali število epizod vpliva na gledanost/oceno?
+* Ali večje število mang pomeni boljšo oceno in obratno (zanima nas, ali obstaja nekakšna zlata sredina med številom mang v seriji in branostjo)?
