@@ -60,6 +60,6 @@ def save_string_to_file(text, directory, filename):
 
 def save_frontpage(directory, filename):
     """Funkcija vrne celotno vsebino datoteke "directory"/"filename" kot niz"""
-    text = download_url_to_string(cats_frontpage_url)
+    text = download_url_to_string(anime_frontpage_url)
     save_string_to_file(text, directory, filename)
     return None
