@@ -24,3 +24,42 @@ anime_directory = 'anime'
 frontpage_filename = 'index_anime.html'
 # ime CSV datoteke v katero bomo shranili podatke
 csv_filename = 'anime.csv'
+
+def download_url_to_string(url):
+    """Funkcija kot argument sprejme niz in puskuša vrniti vsebino te spletne
+    strani kot niz. V primeru, da med izvajanje pride do napake vrne None.
+    """
+    try:
+        # del kode, ki morda sproži napako
+        r = requests.get(url)
+    except requests.exceptions.ConnectionError:
+        # koda, ki se izvede pri napaki
+        # dovolj je če izpišemo opozorilo in prekinemo izvajanje funkcije
+        print("Napaka pri povezovanju do:", url)
+        return None
+    # nadaljujemo s kodo če ni prišlo do napake
+    if r.status_code == requests.codes.ok:
+        return r.text
+    else:
+        print("Napaka pri prenosu strani:", url)
+        return None
+
+def save_string_to_file(text, directory, filename):
+    """Funkcija zapiše vrednost parametra "text" v novo ustvarjeno datoteko
+    locirano v "directory"/"filename", ali povozi obstoječo. V primeru, da je
+    niz "directory" prazen datoteko ustvari v trenutni mapi.
+    """
+    os.makedirs(directory, exist_ok=True)
+    path = os.path.join(directory, filename)
+    with open(path, 'w', encoding='utf-8') as file_out:
+        file_out.write(text)
+    return None
+
+# Definirajte funkcijo, ki prenese glavno stran in jo shrani v datoteko.
+
+
+def save_frontpage(directory, filename):
+    """Funkcija vrne celotno vsebino datoteke "directory"/"filename" kot niz"""
+    text = download_url_to_string(cats_frontpage_url)
+    save_string_to_file(text, directory, filename)
+    return None
