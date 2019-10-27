@@ -84,7 +84,7 @@ def read_file_to_string(directory, filename):
 def page_to_ads(page_content):
     """Funkcija poišče posamezne animeje, ki se nahajajo v spletni strani in
     vrne njih seznam"""
-    rx = re.compile(r'<div class="ad">(.*?)<div class="clear">',
+    rx = re.compile(r'<a class="hoverinfo_trigger.*?>(.*?)<div class="picSurround">',
                     re.DOTALL)
     ads = re.findall(rx, page_content)
     return ads
