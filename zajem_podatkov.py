@@ -3,6 +3,7 @@ import re
 import os
 import csv
 import orodja
+import time
 
 anime_na_stran = 50
 skupno_stevilo = 250
@@ -17,11 +18,12 @@ skupno_stevilo = 250
 #    vsebina = orodja.vsebina_datoteke(ime_datoteke)
 
 # definiratje URL glavne strani bolhe za oglase z mačkami
-anime_frontpage_url = 'https://myanimelist.net/anime.php?q=&type=0&score=0&status=2&p=0&r=0&sm=0&sd=0&sy=0&em=0&ed=0&ey=0&c[0]=a&c[1]=b&c[2]=c&c[3]=d&c[4]=e&c[5]=f&c[6]=g&gx=0&show=0'
+
+stevilo_strani = 10
 # mapa, v katero bomo shranili podatke
 anime_directory = 'anime'
 # ime datoteke v katero bomo shranili glavno stran
-frontpage_filename = 'index_anime.html'
+frontpage_filename = '{}_anime.html'
 # ime CSV datoteke v katero bomo shranili podatke
 csv_filename = 'anime.csv'
 
@@ -60,8 +62,33 @@ def save_string_to_file(text, directory, filename):
 
 def save_frontpage(directory, filename):
     """Funkcija vrne celotno vsebino datoteke "directory"/"filename" kot niz"""
-    text = download_url_to_string(anime_frontpage_url)
-    save_string_to_file(text, directory, filename)
+
+    #text = str()
+    
+    
+    #for i in range(stevilo_strani):
+    for i in range(1):
+        text = ""
+        anime_frontpage_url = 'https://myanimelist.net/anime.php?q=&type=0&score=0&status=2&p=0&r=0&sm=0&sd=0&sy=0&em=0&ed=0&ey=0&c[0]=a&c[1]=b&c[2]=c&c[3]=d&c[4]=e&c[5]=f&c[6]=g&gx=0&show={}'
+        print(i)
+        anime_frontpage_url = anime_frontpage_url.format(i * 50)
+
+        text = download_url_to_string(anime_frontpage_url)
+        print("First try")
+        
+        j = 0
+        while text == None and j < 20:
+            print("     Trying again:", i)
+            time.sleep(1)
+            text = download_url_to_string(anime_frontpage_url)
+            j += 1
+        if j == 20:
+            print("Prevec neuspelih poizkusov")
+
+        save_string_to_file(text, directory, filename.format(i))
+        
+
+    
     return None
 
 ###############################################################################
@@ -71,8 +98,13 @@ def save_frontpage(directory, filename):
 
 def read_file_to_string(directory, filename):
     """Funkcija vrne celotno vsebino datoteke "directory"/"filename" kot niz"""
+    frontpage_filename = '{}_anime.html'
+    filename = frontpage_filename.format(0)
+    
     path = os.path.join(directory, filename)
-    with open(path, 'r') as file_in:
+
+
+    with open(path, 'r', encoding='utf-8') as file_in:
         return file_in.read()
 
 # Definirajte funkcijo, ki sprejme niz, ki predstavlja vsebino spletne strani,
@@ -162,11 +194,8 @@ def write_cat_ads_to_csv(ads, directory, filename):
 # Celoten program poženemo v glavni funkciji
 
 def main(redownload=True, reparse=True):
-    """Funkcija izvede celoten del pridobivanja podatkov:
-    1. Oglase prenese iz bolhe
-    2. Lokalno html datoteko pretvori v lepšo predstavitev podatkov
-    3. Podatke shrani v csv datoteko
-    """
+    """Funkcija izvede celoten del pridobivanja podatkov"""
+
     # Najprej v lokalno datoteko shranimo glavno stran
     save_frontpage(anime_directory, frontpage_filename)
 
