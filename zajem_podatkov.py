@@ -128,13 +128,23 @@ def page_to_ads(page_content):
 def get_dict_from_ad_block(block):
     """Funkcija iz niza za posamezen blok izlušči podatke o ??? ki vsebuje ustrezne podatke
     """
-    rx = re.compile(r'title="(?P<name>.*?)"'
-                    r'.*?</h3>\s*(?P<description>.*?)\s*</?div'
-                    r'.*?class="price">(<span>)?(?P<price>.*?)'
-                    r'( €</span>)?</div',
+    rx = re.compile(r'<strong>(?P<naslov>.*?)\s*</strong>.*</a>.*?\s*' #naslov
+                    r'<div class="pt4">(?P<opis>.*?)\s*</td>.*?\s*' #opis
+                    r'<td .*?>\s*(?P<type>.*?)\s*</td>.*?\s*' #type
+                    r'<td .*?>\s*(?P<stevilo_epizod>.*?)\s*</td>.*?\s*' #stevilo episod
+                    r'<td .*?>\s*(?P<ocena>.*?)\s*</td>.*?\s*' #ocena
+                    r'<td .*?>\s*(?P<start_date>.*?)\s*</td>.*?\s*' #start date
+                    r'<td .*?>\s*(?P<end_date>.*?)\s*</td>.*?\s*' #end date
+                    r'<td .*?>\s*(?P<stevilo_glasov>.*?)\s*</td>.*?\s*' #stevilo glasov
+                    r'<td .*?>\s*(?P<rating>.*?)\s*</td>.*?\s*', #rating
                     re.DOTALL)
+
     data = re.search(rx, block)
     ad_dict = data.groupdict()
+
+    print("Seznam:")
+    print(ad_dict)
+
     return ad_dict
 
 # Definirajte funkcijo, ki sprejme ime in lokacijo datoteke, ki vsebuje
