@@ -66,8 +66,8 @@ def save_frontpage(directory, filename):
     #text = str()
     
     
-    #for i in range(stevilo_strani):
-    for i in range(1):
+    for i in range(stevilo_strani):
+    #for i in range(1):
         text = ""
         anime_frontpage_url = 'https://myanimelist.net/anime.php?q=&type=0&score=0&status=2&p=0&r=0&sm=0&sd=0&sy=0&em=0&ed=0&ey=0&c[0]=a&c[1]=b&c[2]=c&c[3]=d&c[4]=e&c[5]=f&c[6]=g&gx=0&show={}'
         print(i)
@@ -129,7 +129,7 @@ def get_dict_from_ad_block(block):
     """Funkcija iz niza za posamezen blok izlušči podatke o ??? ki vsebuje ustrezne podatke
     """
     rx = re.compile(r'<strong>(?P<naslov>.*?)\s*</strong>.*</a>.*?\s*' #naslov
-                    r'<div class="pt4">(?P<opis>.*?)\s*</td>.*?\s*' #opis
+                    r'<div class="pt4">(?P<opis>.*?)\s*</div>.*?\s*' #opis
                     r'<td .*?>\s*(?P<type>.*?)\s*</td>.*?\s*' #type
                     r'<td .*?>\s*(?P<stevilo_epizod>.*?)\s*</td>.*?\s*' #stevilo episod
                     r'<td .*?>\s*(?P<ocena>.*?)\s*</td>.*?\s*' #ocena
