@@ -22,7 +22,7 @@ skupno_stevilo = 250
 stevilo_strani = 10
 # mapa, v katero bomo shranili podatke
 anime_directory = 'anime'
-# ime datoteke v katero bomo shranili glavno stran
+# ime datoteke v katero bomo shranili html datoteke
 frontpage_filename = '{}_anime.html'
 # ime CSV datoteke v katero bomo shranili podatke
 csv_filename = 'anime.csv'
@@ -98,11 +98,15 @@ def save_frontpage(directory, filename):
 
 def read_file_to_string(directory, filename):
     """Funkcija vrne celotno vsebino datoteke "directory"/"filename" kot niz"""
-    frontpage_filename = '{}_anime.html'
-    filename = frontpage_filename.format(0)
-    
-    path = os.path.join(directory, filename)
+    #frontpage_filename = '{}_anime.html'
+    #filename = frontpage_filename.format(0)
+    #
+    #path = os.path.join(directory, filename)
 
+    for i in range(stevilo_strani):
+        frontpage_filename = '{}_anime.html'
+        filename = frontpage_filename.format(i)
+        path = os.path.join(directory, filename)
 
     with open(path, 'r', encoding='utf-8') as file_in:
         return file_in.read()
