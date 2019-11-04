@@ -114,7 +114,7 @@ def page_to_ads(page_content):
 
 
 def get_dict_from_ad_block(block):
-    """Funkcija iz niza za posamezen blok izlušči podatke o ??? ki vsebuje ustrezne podatke
+    """Funkcija iz niza za posamezen blok izlušči ustrezne podatke o posameznem animeju
     """
     rx = re.compile(r'<strong>(?P<naslov>.*?)\s*</strong>.*</a>.*?\s*'  # naslov
                     r'<div class="pt4">(?P<opis>.*?)\s*</div>.*?\s*'  # opis
@@ -143,7 +143,7 @@ def get_dict_from_ad_block(block):
 
 def ads_from_file(filename, directory):
     """Funkcija prebere podatke v datoteki "directory"/"filename" in jih
-   pretvori (razčleni) v pripadajoč seznam slovarjev za vsak oglas posebej."""
+   pretvori (razčleni) v pripadajoč seznam slovarjev za vsak anime posebej."""
     page = read_file_to_string(filename, directory)
     blocks = page_to_ads(page)
     ads = [get_dict_from_ad_block(block) for block in blocks]
@@ -173,9 +173,9 @@ def write_csv(fieldnames, rows, directory, filename):
             writer.writerow(row)
     return None
 
-# Definirajte funkcijo, ki sprejme neprazen seznam slovarjev, ki predstavljajo
-# podatke iz oglasa mačke, in zapiše vse podatke v csv datoteko. Imena za
-# stolpce [fieldnames] pridobite iz slovarjev.
+# Definiramo funkcijo, ki sprejme neprazen seznam slovarjev, ki predstavljajo
+# podatke o posameznem animeju, in zapiše vse podatke v csv datoteko. Imena za
+# stolpce [fieldnames] pridobimo iz slovarjev.
 
 
 def write_article_to_csv(ads, directory, filename):
