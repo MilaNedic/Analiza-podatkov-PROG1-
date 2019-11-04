@@ -5,19 +5,7 @@ import csv
 import orodja
 import time
 
-anime_na_stran = 50
-skupno_stevilo = 250
-
-# def filmi_na_strani(st_strani, na_stran=50):
-#    url = (
-#        f'https://myanimelist.net/anime.php?q=&type=0&score=0&status=2&p=0&r=0&sm=0&sd=0&sy=0&em=0&ed=0&ey=0&c[0]=a&c[1]=b&c[2]=c&c[3]=d&c[4]=e&c[5]=f&c[6]=g&gx=0&'
-#        f'&show={(st_strani - 1) * na_stran + 1}'
-#    )
-#    ime_datoteke = 'zajeti-podatki/najbolj-znani-filmi-{}.html'.format(st_strani)
-#    orodja.shrani_spletno_stran(url, ime_datoteke)
-#    vsebina = orodja.vsebina_datoteke(ime_datoteke)
-
-# definiratje URL glavne strani bolhe za oglase z mačkami
+anime_na_stran = 49
 
 stevilo_strani = 10
 # mapa, v katero bomo shranili podatke
@@ -71,7 +59,7 @@ def save_frontpage(directory, filename):
     for i in range(stevilo_strani):
         # for i in range(1):
         text = ""
-        anime_frontpage_url = 'https://myanimelist.net/anime.php?q=&type=0&score=0&status=2&p=0&r=0&sm=0&sd=0&sy=0&em=0&ed=0&ey=0&c[0]=a&c[1]=b&c[2]=c&c[3]=d&c[4]=e&c[5]=f&c[6]=g&gx=0&show={}'
+        anime_frontpage_url = 'https://myanimelist.net/anime.php?q=&type=0&score=0&status=2&p=0&r=0&sm=0&sd=0&sy=0&em=0&ed=0&ey=0&c[0]=a&c[1]=b&c[2]=c&c[3]=d&c[4]=e&c[5]=f&c[6]=g&gx=0&o=3&w=1&show={}'
         print(i)
         anime_frontpage_url = anime_frontpage_url.format(i * 50)
 
@@ -99,24 +87,15 @@ def save_frontpage(directory, filename):
 
 def read_file_to_string(directory, filename):
     """Funkcija vrne celotno vsebino datoteke "directory"/"filename" kot niz"""
-    # frontpage_filename = '{}_anime.html'
-    # filename = frontpage_filename.format(0)
-    #
-    # path = os.path.join(directory, filename)
 
-    #for i in range(stevilo_strani):
-    #   frontpage_filename = '{}_anime.html'
-    #    filename = frontpage_filename.format(i)
-    #    path = os.path.join(directory, filename)
-    #
     path = os.path.join(directory, filename)
 
     with open(path, 'r', encoding='utf-8', errors='ignore') as file_in:
         return file_in.read()
 
 
-# Definirajte funkcijo, ki sprejme niz, ki predstavlja vsebino spletne strani,
-# in ga razdeli na dele, kjer vsak del predstavlja en oglas. To storite s
+# Definiramo funkcijo, ki sprejme niz, ki predstavlja vsebino spletne strani,
+# in ga razdeli na dele, kjer vsak del predstavlja anime članek. To storimo s
 # pomočjo regularnih izrazov, ki označujejo začetek in konec posameznega
 # oglasa. Funkcija naj vrne seznam nizov.
 
@@ -157,9 +136,9 @@ def get_dict_from_ad_block(block):
     return ad_dict
 
 
-# Definirajte funkcijo, ki sprejme ime in lokacijo datoteke, ki vsebuje
+# Definiramo funkcijo, ki sprejme ime in lokacijo datoteke, ki vsebuje
 # besedilo spletne strani, in vrne seznam slovarjev, ki vsebujejo podatke o
-# vseh oglasih strani.
+# posameznih animejih.
 
 
 def ads_from_file(filename, directory):
@@ -193,21 +172,6 @@ def write_csv(fieldnames, rows, directory, filename):
         for row in rows:
             writer.writerow(row)
     return None
-
-# def write_csv(fieldnames, rows, directory, filename):
-#     """
-#     Funkcija v csv datoteko podano s parametroma "directory"/"filename" zapiše
-#     vrednosti v parametru "rows" pripadajoče ključem podanim v "fieldnames"
-#     """
-#     os.makedirs(directory, exist_ok=True)
-#     path = os.path.join(directory, filename)
-#     with open(path, 'w') as csv_file:
-#         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-#         writer.writeheader()
-#         for row in rows:
-#             writer.writerow(row)
-#     return None
-
 
 # Definirajte funkcijo, ki sprejme neprazen seznam slovarjev, ki predstavljajo
 # podatke iz oglasa mačke, in zapiše vse podatke v csv datoteko. Imena za
@@ -246,8 +210,6 @@ def main(redownload=True, reparse=True):
     # Podatke prebermo v lepšo obliko (seznam slovarjev)
     ads_nice = [get_dict_from_ad_block(ad) for ad in ads]
     # Podatke shranimo v csv datoteko
-
-    #print("ADS NICE", ads_nice)
 
     write_article_to_csv(ads_nice, anime_directory, csv_filename)
 
