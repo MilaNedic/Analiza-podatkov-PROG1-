@@ -25,6 +25,9 @@ Delovne hipoteze:
 
 **O repozitoriju**
 Datoteka zajem_podatkov.py je bila narejena za zajem podatkov in izdelavo csv datoteke s podatki (ki se nahaja v mapi anime).
+
 Mapa anime vsebuje prvih 10 strani html datotek (torej zajema prvih 490 naslovov - na stran pride ravno 49 animejev), anime.csv pa vsebuje obdelane podatke, torej naslov, opis, oceno, tip animeja, število epizod, oceno, začetek in konec predvajanja, število glasov in maturity rating. 
-(orodja.py je bila pomožna datoteka, ki pa je nisem uporabila)
+
 Datoteke s končnico .json skrbijo za pravilno delovanje delovanje ostalih datotek. 
+
+(orodja.py je bila pomožna datoteka, ki pa je nisem uporabila)
