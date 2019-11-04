@@ -55,7 +55,7 @@ def save_string_to_file(text, directory, filename):
     """
     os.makedirs(directory, exist_ok=True)
     path = os.path.join(directory, filename)
-    with open(path, 'w', encoding='utf-8') as file_out:
+    with open(path, 'w', encoding='utf-8', errors='ignore') as file_out:
         file_out.write(text)
     return None
 
@@ -111,7 +111,7 @@ def read_file_to_string(directory, filename):
     #
     path = os.path.join(directory, filename)
 
-    with open(path, 'r', encoding='utf-8') as file_in:
+    with open(path, 'r', encoding='utf-8', errors='ignore') as file_in:
         return file_in.read()
 
 
@@ -187,7 +187,7 @@ def write_csv(fieldnames, rows, directory, filename):
     """
     os.makedirs(directory, exist_ok=True)
     path = os.path.join(directory, filename)
-    with open(path, 'w') as csv_file:
+    with open(path, 'w', encoding='utf-8', errors='igore') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         for row in rows:
