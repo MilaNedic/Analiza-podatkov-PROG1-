@@ -7,7 +7,7 @@ import time
 
 anime_na_stran = 49
 
-stevilo_strani = 19
+stevilo_strani = 10
 # mapa, v katero bomo shranili podatke
 anime_directory = 'anime'
 # ime datoteke v katero bomo shranili html datoteke
