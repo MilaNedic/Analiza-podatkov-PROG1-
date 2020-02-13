@@ -42,3 +42,4 @@ Analiza podatkov se nahaja v datoteki analiza podatkov.ipynb.
 **Ugotovitve**
 * Ena izmed glavnih ugotovitev je ta, da niti žanr niti vsebina ne vplivata na popularnost. 
 * Ljudje nasploh radi gledajo animeje in njihve preference so zelo raznolike.
+* Izmed analiziranih animejev je TV daleč najbolj popularen tip
