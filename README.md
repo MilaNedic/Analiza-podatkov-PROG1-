@@ -44,3 +44,4 @@ Analiza podatkov se nahaja v datoteki analiza podatkov.ipynb.
 * Ljudje nasploh radi gledajo animeje in njihve preference so zelo raznolike.
 * Izmed analiziranih animejev je TV daleč najbolj popularen tip.
 * Iz analize maturity ranting-a ugotovimo, da so ciljna publika najstniki, stari okrog 15 let.
+* Ugotovili smo, da ljudje ne radi dajejo slabih ocen, zato imajo boljše ocenjeni animeji tudi večje število glasov (ljudje raje dajo pozitiven feedback). No, konstruktivne kritike seveda nikoli ne škodijo.
